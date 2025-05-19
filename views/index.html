@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>File Converter Pro</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🔄 File Converter Pro</h1>
+    <p>Convert your files easily and professionally</p>
+
+    <div class="upload-area" id="upload-area">
+      <input type="file" id="fileInput" hidden />
+      <p id="uploadText">📁 Drag & Drop your file or <span class="browse-btn">Browse</span></p>
+    </div>
+
+    <select id="formatSelect">
+      <option value="pdf">Convert to PDF</option>
+      <option value="docx">Convert to DOCX</option>
+      <option value="txt">Convert to TXT</option>
+    </select>
+
+    <button id="convertBtn">Convert</button>
+    <p id="statusMessage"></p>
+    <div id="downloadSection" style="display: none;">
+      <a id="downloadLink" class="download-btn" href="#" download>⬇️ Download File</a>
+    </div>
+  </div>
+
+  <script src="/script.js"></script>
+</body>
+</html>
