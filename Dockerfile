@@ -1,27 +1,25 @@
-# Base image with Node.js and LibreOffice
-FROM debian:bullseye
+# Use official Node.js image with Debian
+FROM node:18
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
-    curl \
-    gnupg \
-    ca-certificates \
-    libreoffice \
-    nodejs \
-    npm \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Install LibreOffice
+RUN apt-get update && \
+    apt-get install -y libreoffice && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Create app directory
 WORKDIR /app
 
-# Copy project files
+# Copy app files
 COPY . .
 
-# Install Node.js dependencies
+# Install dependencies
 RUN npm install
 
-# Expose port
+# Create folders if not present
+RUN mkdir -p uploads converted
+
+# Expose app port
 EXPOSE 3000
 
 # Start the server
