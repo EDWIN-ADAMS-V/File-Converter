@@ -1,0 +1,54 @@
+🎮 Gesture Controlled Hill Climb Racing — A Simple Fun Project in My Free Time
+
+I’ve seen so many cool posts lately — people controlling Temple Run, Subway Surfers, and other games using hand gestures with MediaPipe and OpenCV.
+
+So I thought… why not build one for my all-time favorite — Hill Climb Racing?
+
+In my free time, I decided to make a simple gesture control system to play the game — just using my webcam and hand gestures for ⛽ Gas and 🛑 Brake.
+It was really exciting and satisfying working on this one!
+
+🛠️ Tools & Technologies Used:
+
+Python (3.11)
+
+OpenCV – for real-time video feed
+
+MediaPipe – for hand tracking
+
+PyAutoGUI – to simulate keyboard input
+
+BlueStacks Emulator – to run the game
+
+Visual Studio Code – for development
+
+OBS Studio – to record screen + audio
+
+🧠 What I Built:
+
+Tracked hand landmarks using MediaPipe
+
+Detected simple gestures (like thumbs up/down)
+
+Mapped them to game controls (Gas / Brake)
+
+Synced gesture recognition with keypress actions
+
+Tuned it for stability and recorded demo footage
+
+🎯 This project gave me a hands-on understanding of:
+
+Gesture recognition with minimal ML
+
+Real-time video processing and key mapping
+
+Emulator-based game control
+
+Bringing automation into a fun context
+
+This wasn’t a big or complex build — just a small project I enjoyed making during free hours to learn something cool and creative.
+
+Built this just for fun — but the possibilities? Endless.
+Type “show me magic” below, and let’s chat.
+
+#Python hashtag#OpenCV hashtag#MediaPipe hashtag#GestureControl hashtag#GameAutomation hashtag#AIProjects hashtag#ComputerVision hashtag#TechForFun hashtag#GameDev hashtag#AutomationProject hashtag#HandTracking hashtag#HillClimbRacing hashtag#VSCode hashtag#AIinGaming hashtag#GestureRecognition hashtag#PythonProjects hashtag#CreativeCoding hashtag#GamingInnovation hashtag#RealTimeDetection hashtag#FunWithCode
+

@@ -1,40 +1,48 @@
-const express = require("express");
-const path = require("path");
-const multer = require("multer");
-const fs = require("fs");
-const { convertFile } = require("./converters");
-
+const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const path = require('path');
+const multer = require('multer');
+const mime = require('mime-types');
+const fs = require('fs');
+const { convertFile } = require('./src/converters');
 
-// ✅ Serve static files from public/
-app.use(express.static(path.join(__dirname, "public")));
+const PORT = process.env.PORT || 3000;  // ✅ Important for Render
 
-// ✅ Serve index.html for root route
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "views", "index.html"));
+// Middleware
+app.use(express.static('public'));
+app.use('/uploads', express.static('uploads'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Homepage
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-// 🔄 Handle file uploads with multer
-const upload = multer({ dest: "uploads/" });
+// Multer setup for file upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, 'uploads/'),
+  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
+});
+const upload = multer({ storage });
 
-app.post("/convert", upload.single("file"), async (req, res) => {
-  const file = req.file;
+// Conversion route
+app.post('/convert', upload.single('file'), async (req, res) => {
   const format = req.body.format;
+  const file = req.file;
 
-  if (!file) return res.status(400).send("No file uploaded.");
+  if (!file) return res.status(400).json({ error: 'No file uploaded.' });
 
   try {
-    const convertedPath = await convertFile(file.path, format);
-    res.download(convertedPath, (err) => {
-      fs.unlinkSync(file.path);
-      fs.unlinkSync(convertedPath);
-    });
+    const outputPath = await convertFile(file.path, format);
+    return res.download(outputPath);  // <-- This sends the actual file!
   } catch (err) {
-    res.status(500).send("Conversion failed.");
+    return res.status(500).json({ error: err.message || 'Conversion failed.' });
   }
 });
 
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });

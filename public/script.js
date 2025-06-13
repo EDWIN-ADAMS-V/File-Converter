@@ -73,7 +73,7 @@ convertBtn.addEventListener("click", async () => {
 
     statusMessage.textContent = "✅ Conversion successful! Download below.";
   } catch (error) {
-    console.error(error);
-    statusMessage.textContent = "❌ Conversion failed.";
+    console.error("❌ Error:", error);
+    statusMessage.textContent = "❌ Conversion failed. Check server log.";
   }
 });
